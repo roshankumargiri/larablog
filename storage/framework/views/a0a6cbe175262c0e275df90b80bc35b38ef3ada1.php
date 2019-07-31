@@ -1,0 +1,26 @@
+<?php $__env->startSection('script'); ?>
+<script type="text/javascript">
+    $('ul.pagination').addClass('no-margin pagination-sm');
+
+        $('#title').on('blur', function() {
+            var theTitle = this.value.toLowerCase().trim(),
+                slugInput = $('#slug'),
+                theSlug = theTitle.replace(/&/g, '-and-')
+                                  .replace(/[^a-z0-9-]+/g, '-')
+                                  .replace(/\-\-+/g, '-')
+                                  .replace(/^-+|-+$/g, '');
+
+            slugInput.val(theSlug);
+        });
+
+        var simplemde1 = new SimpleMDE({ element: $("#excerpt")[0] });
+        var simplemde2 = new SimpleMDE({ element: $("#body")[0] });
+        $(function () {
+        $('#datetimepicker1').datetimepicker({
+            format: 'YYYY-MM-DD HH:mm:ss',
+            showClear: true
+        });
+        });
+</script>
+<?php $__env->stopSection(); ?>
+<?php /**PATH E:\laravel\blog\resources\views/backend/blog/script.blade.php ENDPATH**/ ?>
