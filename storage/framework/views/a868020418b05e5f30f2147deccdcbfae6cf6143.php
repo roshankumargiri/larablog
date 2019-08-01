@@ -39,7 +39,11 @@
                                 <a href="<?php echo e(route('backend.user.edit',Auth::user()->id)); ?>"
                                     class="btn btn-default btn-flat">Profile</a>
                             </div>
-                            <div class="pull-right">
+                            <div class="pull-left">
+                                <a href="<?php echo e(route('backend.user.changeimage',Auth::user()->id)); ?>"
+                                    class="btn btn-default btn-flat">Change Image</a>
+                            </div>
+                            <div class="pull-left">
                                 <form action="<?php echo e(url('/logout')); ?>" method="post">
                                     <?php echo csrf_field(); ?>
                                     <button type="submit" class="btn btn-default btn-flat">Sign out</button>

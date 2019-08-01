@@ -38,7 +38,11 @@
                                 <a href="{{route('backend.user.edit',Auth::user()->id)}}"
                                     class="btn btn-default btn-flat">Profile</a>
                             </div>
-                            <div class="pull-right">
+                            <div class="pull-left">
+                                <a href="{{route('backend.user.changeimage',Auth::user()->id)}}"
+                                    class="btn btn-default btn-flat">Change Image</a>
+                            </div>
+                            <div class="pull-left">
                                 <form action="{{url('/logout')}}" method="post">
                                     @csrf
                                     <button type="submit" class="btn btn-default btn-flat">Sign out</button>

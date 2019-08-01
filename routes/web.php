@@ -76,3 +76,11 @@ Route::post('/backend/user/confirmdelete/{id}', [
     'uses' => 'Backend\UserController@confirmdelete',
     'as' => 'backend.user.confirmdelete'
 ]);
+Route::get('/backend/user/changeimage/{id}', [
+    'uses' => 'Backend\UserController@changeimage',
+    'as' => 'backend.user.changeimage'
+]);
+Route::put('/backend/user/updateimage/{id}', [
+    'uses' => 'Backend\UserController@updateimage',
+    'as' => 'backend.user.updateimage'
+]);

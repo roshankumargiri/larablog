@@ -58,7 +58,7 @@
             </div>
             <div class="bio form-group<?php echo e($errors->has('bio') ? ' has-error' : ''); ?>">
                 <label for="bio">Bio</label>
-                <textarea name="bio" id="bio" rows="5" class="form-control"><?php echo e(old('bio')); ?></textarea>
+                <textarea name="bio" id="bio" class="form-control"><?php echo e(old('bio')); ?></textarea>
                 <?php if($errors->has('bio')): ?>
                 <span class="help-block"><?php echo e($errors->first('bio')); ?></span>
                 <?php endif; ?> </div>

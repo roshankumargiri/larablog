@@ -10,6 +10,8 @@ use App\Post;
 use App\User;
 use App\Role;
 use Auth;
+use Intervention\Image\Facades\Image;
+
 
 class UserController extends BackendController
 {
@@ -151,5 +153,29 @@ class UserController extends BackendController
             User::findOrFail($olduser->id)->delete();
         }
         return redirect('/backend/user')->with('message', 'User successfully Deleted');
+    }
+    public function changeimage($id)
+    {
+        $user = User::findOrFail($id);
+        return view('backend.user.changeimage', compact('user'));
+    }
+    public function updateimage(Request $request, $id)
+    {
+        //dd($request);
+        $user = User::findOrFail($id);
+        if ($request->hasFile('image')) {
+            //dd("image received");
+            $image = $request->file('image');
+            $fileName = $user->slug . rand(10, 99) . '.' . $image->getClientOriginalExtension();
+            $destination = public_path('img');
+            $successUploaded = $image->move($destination, $fileName);
+            if ($successUploaded) {
+                $thumbnail = "thumb_" . $fileName;
+                Image::make($destination . '/' . $fileName)->resize(800, 450)->save($destination . '/' . $thumbnail);
+            }
+            $user->gavatar = $fileName;
+        }
+        $user->save();
+        return redirect('/home')->with('message', 'Profile image changed successfully');
     }
 }

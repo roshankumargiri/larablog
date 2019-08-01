@@ -58,7 +58,7 @@
             </div>
             <div class="bio form-group{{$errors->has('bio') ? ' has-error' : ''}}">
                 <label for="bio">Bio</label>
-                <textarea name="bio" id="bio" rows="5" class="form-control">{{ old('bio') }}</textarea>
+                <textarea name="bio" id="bio" class="form-control">{{ old('bio') }}</textarea>
                 @if ($errors->has('bio'))
                 <span class="help-block">{{$errors->first('bio')}}</span>
                 @endif </div>

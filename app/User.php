@@ -44,13 +44,17 @@ class User extends Authenticatable
     {
         return $this->hasMany(Post::class);
     }
+    public function getImageUrlAttribute($value)
+    {
 
+        $imageUrl = "";
+        if (!is_null($this->gavatar)) {
 
-
-
-
-
-
+            $imagePath = public_path() . "/img/" . $this->gavatar;
+            if (file_exists($imagePath)) $imageUrl = asset("img/thumb_" . $this->gavatar);
+        }
+        return $imageUrl;
+    }
     public function getRouteKeyName()
     {
         return 'slug';
