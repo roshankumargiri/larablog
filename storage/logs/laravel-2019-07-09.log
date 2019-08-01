@@ -1,4 +1,0 @@
-[2019-07-09 02:22:16] local.ERROR: Constant expression contains invalid operations {"exception":"[object] (Symfony\\Component\\Debug\\Exception\\FatalErrorException(code: 64): Constant expression contains invalid operations at E:\\laravel\\blog\\app\\Http\\Controllers\\Backend\\BlogController.php:15)
-[stacktrace]
-#0 {main}
-"} 

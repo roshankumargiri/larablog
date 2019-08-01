@@ -11,6 +11,14 @@
                 <span class="help-block"><?php echo e($errors->first('name')); ?></span>
                 <?php endif; ?>
             </div>
+            <div class="form-group<?php echo e($errors->has('slug') ? ' has-error' : ''); ?>">
+                <label for="slug">Slug</label>
+                <input type="text" name="slug" placeholder="Enter your slug here" id="slug" class="form-control"
+                    value="<?php echo e(old('slug')); ?>">
+                <?php if($errors->has('slug')): ?>
+                <span class="help-block"><?php echo e($errors->first('slug')); ?></span>
+                <?php endif; ?>
+            </div>
             <div class="form-group<?php echo e($errors->has('email') ? ' has-error' : ''); ?>">
                 <label for="email">Email</label>
                 <input type="email" placeholder="Enter your email here" name="email" id="email" class="form-control"
@@ -40,14 +48,21 @@
 
                 <select class="form-control" name="role" id="role">
                     <option value="" disabled selected>Choose Role</option>
-                    <option value="1">Admin</option>
-                    <option value="2">Editor</option>
-                    <option value="3">Author</option>
+                    <?php $__currentLoopData = $roles; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $role): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <option value="<?php echo e($role->id); ?>"><?php echo e($role->display_name); ?></option>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </select>
                 <?php if($errors->has('role')): ?>
                 <span class="help-block"><?php echo e($errors->first('role')); ?></span>
                 <?php endif; ?>
             </div>
+            <div class="bio form-group<?php echo e($errors->has('bio') ? ' has-error' : ''); ?>">
+                <label for="bio">Bio</label>
+                <textarea name="bio" id="bio" rows="5" class="form-control"><?php echo e(old('bio')); ?></textarea>
+                <?php if($errors->has('bio')): ?>
+                <span class="help-block"><?php echo e($errors->first('bio')); ?></span>
+                <?php endif; ?> </div>
+
 
 
 
@@ -62,4 +77,5 @@
         </div>
     </div>
 </div>
+<?php echo $__env->make('backend.user.script', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 <?php /**PATH E:\laravel\blog\resources\views/backend/user/form.blade.php ENDPATH**/ ?>

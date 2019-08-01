@@ -12,6 +12,14 @@
                 <span class="help-block">{{$errors->first('name')}}</span>
                 @endif
             </div>
+            <div class="form-group{{$errors->has('slug') ? ' has-error' : ''}}">
+                <label for="slug">Slug</label>
+                <input type="text" name="slug" placeholder="Enter your slug here" id="slug" class="form-control"
+                    value="{{$user->name}}">
+                @if ($errors->has('slug'))
+                <span class="help-block">{{$errors->first('slug')}}</span>
+                @endif
+            </div>
 
             <div class="form-group{{$errors->has('email') ? ' has-error' : ''}}">
                 <label for="email">Email</label>
@@ -37,19 +45,29 @@
                 <span class="help-block">{{$errors->first('confirm_password')}}</span>
                 @endif
             </div>
+
+
             <div class="form-group{{$errors->has('role') ? ' has-error' : ''}}">
                 <label for="role">Role</label>
 
                 <select class="form-control" name="role" id="role">
-                    <option value="" disabled selected>Choose Role</option>
-                    <option value="1">Admin</option>
-                    <option value="2">Editor</option>
-                    <option value="3">Author</option>
+
+                    @foreach ($roles as $role)
+                    <option value="{{$role->id}}" {{$user->roles->first()->id == $role->id ? 'selected':''}}>
+                        {{$role->display_name}}</option>
+                    @endforeach
+
                 </select>
                 @if ($errors->has('role'))
                 <span class="help-block">{{$errors->first('role')}}</span>
                 @endif
             </div>
+            <div class="bio form-group{{$errors->has('bio') ? ' has-error' : ''}}">
+                <label for="bio">Bio</label>
+                <textarea name="bio" id="bio" rows="5" class="form-control">{!!$user->slug!!}</textarea>
+                @if ($errors->has('bio'))
+                <span class="help-block">{{$errors->first('bio')}}</span>
+                @endif </div>
         </div>
     </div>
     <div class="box-footer">
@@ -58,3 +76,4 @@
         </div>
     </div>
 </div>
+@include('backend.user.script')

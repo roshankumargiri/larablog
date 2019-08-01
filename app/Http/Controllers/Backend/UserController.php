@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Category;
 use App\Post;
 use App\User;
+use App\Role;
 use Auth;
 
 class UserController extends BackendController
@@ -31,7 +32,8 @@ class UserController extends BackendController
      */
     public function create()
     {
-        return view('backend.user.create');
+        $roles = Role::all();
+        return view('backend.user.create', compact('roles'));
     }
 
     /**
@@ -44,11 +46,19 @@ class UserController extends BackendController
     {
         $user = new User;
         $user->name = $request->name;
+        $user->slug = $request->slug;
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
-        $user->bio = "test bio";
-        $user->gavatar = "test";
+        $user->bio = $request->bio;
+
+
+        $user->gavatar = "test image";
+
+
+
         $user->save();
+
+        //dd($request->role);
         $user->attachRole($request->role);
         return redirect('/backend/user')->with('message', 'User successfully added');
     }
@@ -73,7 +83,8 @@ class UserController extends BackendController
     public function edit($id)
     {
         $user = User::findOrFail($id);
-        return view('backend.user.edit', compact('user'));
+        $roles = Role::all();
+        return view('backend.user.edit', compact('user', 'roles'));
     }
 
     /**
@@ -87,12 +98,14 @@ class UserController extends BackendController
     {
         $user = User::findOrFail($id);
         $user->name = $request->name;
+        $user->slug = $request->slug;
+        $user->bio = $request->bio;
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
-        $user->bio = "test bio";
+
         $user->gavatar = "test";
         $user->save();
-        $user->detachRole($request->role);
+        $user->detachRoles();
         $user->attachRole($request->role);
 
 
