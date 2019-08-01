@@ -101,7 +101,7 @@
                                     </td>
                                     <td><?php echo e($user->name); ?></td>
                                     <td><?php echo e($user->email); ?></td>
-                                    <td>-</td>
+                                    <td><?php echo e($user->roles->first()->display_name); ?></td>
                                     <td><?php echo e($user->posts->count()); ?></td>
 
                                 </tr>

@@ -37,6 +37,19 @@
                 <span class="help-block">{{$errors->first('confirm_password')}}</span>
                 @endif
             </div>
+            <div class="form-group{{$errors->has('role') ? ' has-error' : ''}}">
+                <label for="role">Role</label>
+
+                <select class="form-control" name="role" id="role">
+                    <option value="" disabled selected>Choose Role</option>
+                    <option value="1">Admin</option>
+                    <option value="2">Editor</option>
+                    <option value="3">Author</option>
+                </select>
+                @if ($errors->has('role'))
+                <span class="help-block">{{$errors->first('role')}}</span>
+                @endif
+            </div>
         </div>
     </div>
     <div class="box-footer">

@@ -43,7 +43,7 @@
                             </ul>
                         </div>
                         <div class="pull-right">
-                            <a href="<?php echo e(route('blog.show',$post->id)); ?>">Continue Reading &raquo;</a>
+                            <a href="<?php echo e(route('blog.show',$post->slug)); ?>">Continue Reading &raquo;</a>
                         </div>
                     </div>
                 </div>

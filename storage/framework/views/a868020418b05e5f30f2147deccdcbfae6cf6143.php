@@ -29,7 +29,8 @@
                             <img src="/img/<?php echo e(Auth::user()->gavatar); ?>" class="img-circle" alt="User Image">
 
                             <p>
-                                <?php echo e(Auth::user()->name); ?> - Web Developer
+                                <?php echo e(Auth::user()->name); ?> - <?php echo e(Auth::user()->roles->first()->display_name); ?>
+
                             </p>
                         </li>
                         <!-- Menu Footer-->

@@ -33,7 +33,7 @@
                     <li><a href="<?php echo e(route('backend.blog.create')); ?>"><i class="fa fa-circle-o"></i> Add New</a></li>
                 </ul>
             </li>
-            <?php if (app('laratrust')->hasRole(['admin','editor'])) : ?>
+            <?php if(check_user_permissions(request(),"Category@index")): ?>
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-folder"></i>
@@ -49,8 +49,8 @@
                             Category</a></li>
                 </ul>
             </li>
-            <?php endif; // app('laratrust')->hasRole ?>
-            <?php if (app('laratrust')->hasRole('admin')) : ?>
+            <?php endif; ?>
+            <?php if(check_user_permissions(request(),"User@index")): ?>
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-users"></i>
@@ -66,7 +66,7 @@
                             User</a></li>
                 </ul>
             </li>
-            <?php endif; // app('laratrust')->hasRole ?>
+            <?php endif; ?>
         </ul>
     </section>
     <!-- /.sidebar -->

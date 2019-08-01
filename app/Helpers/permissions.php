@@ -37,21 +37,26 @@ function check_user_permissions($request, $actionName = NULL, $id = NULL)
 
 
             if ($className == 'post' && in_array($method, ['edit', 'update', 'destroy', 'restore', 'forceDestroy'])) {
-                if (($id = $request->route("blog")) && (!$currentUser->can('update-others-post') || $currentUser->can("delete-others-post"))) {
-                    $post = \App\Post::find($id);
+                $id = !is_null($id) ? $id : $request->route('blog');
+
+
+
+                if ($id && (!$currentUser->can('update-others-post') || $currentUser->can("delete-others-post"))) {
+                    $post = \App\Post::withTrashed()->find($id);
+                    //dd($post);
                     //dd($post->user_id, $currentUser->id);
                     if ($post->user_id !== $currentUser->id) {
-                        abort(403, "Forbidden access!");
+                        return false;
                     }
                 }
             }
             // If the user has not permission don't allow next request
             elseif (!$currentUser->can("{$permission}-{$className}")) {
-                abort(403, "Forbidden access!");
+                return false;
             }
             break;
         }
     }
 
-    return $next($request);
+    return true;
 }

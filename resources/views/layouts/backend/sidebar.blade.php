@@ -33,7 +33,7 @@
                     <li><a href="{{ route('backend.blog.create') }}"><i class="fa fa-circle-o"></i> Add New</a></li>
                 </ul>
             </li>
-            @role(['admin','editor'])
+            @if (check_user_permissions(request(),"Category@index"))
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-folder"></i>
@@ -49,8 +49,8 @@
                             Category</a></li>
                 </ul>
             </li>
-            @endrole
-            @role('admin')
+            @endif
+            @if (check_user_permissions(request(),"User@index"))
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-users"></i>
@@ -66,7 +66,7 @@
                             User</a></li>
                 </ul>
             </li>
-            @endrole
+            @endif
         </ul>
     </section>
     <!-- /.sidebar -->

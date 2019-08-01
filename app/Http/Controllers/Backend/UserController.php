@@ -49,6 +49,7 @@ class UserController extends BackendController
         $user->bio = "test bio";
         $user->gavatar = "test";
         $user->save();
+        $user->attachRole($request->role);
         return redirect('/backend/user')->with('message', 'User successfully added');
     }
 
@@ -91,6 +92,10 @@ class UserController extends BackendController
         $user->bio = "test bio";
         $user->gavatar = "test";
         $user->save();
+        $user->detachRole($request->role);
+        $user->attachRole($request->role);
+
+
         return redirect('/backend/user')->with('message', 'User successfully Edited');
     }
 

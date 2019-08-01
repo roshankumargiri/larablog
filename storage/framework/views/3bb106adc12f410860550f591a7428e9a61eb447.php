@@ -37,6 +37,19 @@
                 <span class="help-block"><?php echo e($errors->first('confirm_password')); ?></span>
                 <?php endif; ?>
             </div>
+            <div class="form-group<?php echo e($errors->has('role') ? ' has-error' : ''); ?>">
+                <label for="role">Role</label>
+
+                <select class="form-control" name="role" id="role">
+                    <option value="" disabled selected>Choose Role</option>
+                    <option value="1">Admin</option>
+                    <option value="2">Editor</option>
+                    <option value="3">Author</option>
+                </select>
+                <?php if($errors->has('role')): ?>
+                <span class="help-block"><?php echo e($errors->first('role')); ?></span>
+                <?php endif; ?>
+            </div>
         </div>
     </div>
     <div class="box-footer">

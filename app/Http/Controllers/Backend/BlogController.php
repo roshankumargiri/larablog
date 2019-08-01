@@ -35,11 +35,14 @@ class BlogController extends BackendController
         } elseif ($status == 'draft') {
             $posts = Post::draft()->with('category', 'user')->latest()->paginate($this->limit);
             $postCount = Post::draft()->count();
+        } elseif ($status == 'own') {
+            $posts = $request->user()->posts()->with('category', 'user')->latest()->paginate($this->limit);
+            $postCount = $request->user()->posts->count();
         } else {
             $posts = Post::with('category', 'user')->latest()->paginate($this->limit);
             $postCount = Post::count();
         }
-        $statusCount = $this->statusList();
+        $statusCount = $this->statusList($request);
 
         return view('backend.blog.index', compact('posts', 'postCount', 'onlyTrashed', 'statusCount'));
     }
@@ -184,9 +187,10 @@ class BlogController extends BackendController
             if (file_exists($imageThumbPath)) unlink($imageThumbPath);
         }
     }
-    private function statusList()
+    private function statusList($request)
     {
         return [
+            'own' => $request->user()->posts()->count(),
             'all' => Post::count(),
             'published' => Post::published()->count(),
             'scheduled' => Post::scheduled()->count(),

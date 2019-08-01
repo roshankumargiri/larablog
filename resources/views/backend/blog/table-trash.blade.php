@@ -10,6 +10,7 @@
         </tr>
     </thead>
     <tbody>
+        <?php $request = request();?>
         @foreach ($posts as $post)
         <tr>
 
@@ -19,21 +20,35 @@
                         <form method="POST" action="{{route('backend.blog.restore',$post->id)}}">
                             @method('PUT')
                             @csrf
-
+                            @if(check_user_permissions($request,"Blog@restore",$post->id))
                             <button style="disply:inline-block" title="Restore" type="submit"
-                                class="btn btn-xs btn-info">
+                                class="btn btn-xs btn-info ">
                                 <i class="fa fa-undo"></i>
                             </button>
+                            @else
+                            <button style="disply:inline-block" onclick="return false;" title="Restore" type="submit"
+                                class="btn btn-xs btn-info disabled">
+                                <i class="fa fa-undo"></i>
+                            </button>
+                            @endif
                         </form>
                     </div>
                     <div class="col-xs-3">
                         <form method="POST" action="{{route('backend.blog.force-destroy',$post->id)}}">
                             @method('DELETE')
                             @csrf
-                            <button style="disply:inline-block" onclick = "return confirm('You are about to delete this post permanently. Are you sure you want to delete ?')"title="Delete Permanent" type="submit"
-                                class="btn btn-xs btn-danger">
+                            @if(check_user_permissions($request,"Blog@forceDestroy",$post->id))
+                            <button style="disply:inline-block"
+                                onclick="return confirm('You are about to delete this post permanently. Are you sure you want to delete ?')"
+                                title="Delete Permanent" type="submit" class="btn btn-xs btn-danger">
                                 <i class="fa fa-times"></i>
                             </button>
+                            @else
+                            <button style="disply:inline-block" onclick="return false;" title="Delete Permanent"
+                                type="submit" class="btn btn-xs btn-danger disabled">
+                                <i class="fa fa-times"></i>
+                            </button>
+                            @endif
                         </form>
                     </div>
 
