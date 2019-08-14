@@ -1,60 +1,61 @@
 <div class="col-md-4">
-                <aside class="right-sidebar">
+    <aside class="right-sidebar">
 
-                    <!-- <div class="search-widget">
-                        <div class="input-group">
-                          <input type="text" class="form-control input-lg" placeholder="Search for...">
-                          <span class="input-group-btn">
-                            <button class="btn btn-lg btn-default" type="button">
-                                <i class="fa fa-search"></i>
-                            </button>
-                          </span>
-                        </div>
-                    </div> -->
+        <div class="search-widget">
+            <div class="input-group">
+                <input type="text" class="form-control input-lg" placeholder="Search for...">
+                <span class="input-group-btn">
+                    <button class="btn btn-lg btn-default" type="button">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </span>
+            </div>
+        </div>
 
-                    <div class="widget">
-                        <div class="widget-heading">
-                            <h4>Categories</h4>
-                        </div>
+        <div class="widget">
+            <div class="widget-heading">
+                <h4>Categories</h4>
+            </div>
 
-                        <div class="widget-body">
-                            <ul class="categories">
-                                @foreach($categories as $category)
-                                <li>
-                                    <a href="{{route('category',$category->slug)}}"><i class="fa fa-angle-right"></i>{{$category->title}}</a>
-                                    <span class="badge pull-right">{{$category->posts->count()}}</span>
-                                </li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    </div>
+            <div class="widget-body">
+                <ul class="categories">
+                    @foreach($categories as $category)
+                    <li>
+                        <a href="{{route('category',$category->slug)}}"><i
+                                class="fa fa-angle-right"></i>{{$category->title}}</a>
+                        <span class="badge pull-right">{{$category->posts->count()}}</span>
+                    </li>
+                    @endforeach
+                </ul>
+            </div>
+        </div>
 
-                    <div class="widget">
-                        <div class="widget-heading">
-                            <h4>Popular Posts</h4>
+        <div class="widget">
+            <div class="widget-heading">
+                <h4>Popular Posts</h4>
+            </div>
+            <div class="widget-body">
+                <ul class="popular-posts">
+                    @foreach($popular_posts as $popular_post)
+                    <li>
+                        <div class="post-image">
+                            <a href="{{route('blog.show',$popular_post->slug)}}">
+                                <img src="{{$popular_post->image_url}}" />
+                            </a>
                         </div>
-                        <div class="widget-body">
-                            <ul class="popular-posts">
-                                @foreach($popular_posts as $popular_post)
-                                <li>
-                                    <div class="post-image">
-                                        <a href="{{route('blog.show',$popular_post->slug)}}">
-                                            <img src="{{$popular_post->image_url}}" />
-                                        </a>
-                                    </div>
-                                    <div class="post-body">
-                                        <h6><a href="{{route('blog.show',$popular_post->slug)}}">{{$popular_post->title}}</a></h6>
-                                        <div class="post-meta">
-                                            <span>{{$popular_post->date}}</span>
-                                        </div>
-                                    </div>
-                                </li>
-                                @endforeach
-                            </ul>
+                        <div class="post-body">
+                            <h6><a href="{{route('blog.show',$popular_post->slug)}}">{{$popular_post->title}}</a></h6>
+                            <div class="post-meta">
+                                <span>{{$popular_post->date}}</span>
+                            </div>
                         </div>
-                    </div>
+                    </li>
+                    @endforeach
+                </ul>
+            </div>
+        </div>
 
-                    <!-- <div class="widget">
+        <!-- <div class="widget">
                         <div class="widget-heading">
                             <h4>Tags</h4>
                         </div>
@@ -72,5 +73,5 @@
                         </div>
                     </div> -->
 
-                </aside>
-            </div>
+    </aside>
+</div>
