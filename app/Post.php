@@ -7,10 +7,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use App\User;
 use Carbon\Carbon;
 use GrahamCampbell\Markdown\Facades\Markdown;
+use Laravel\Scout\Searchable;
 
 class Post extends Model
 {
     use SoftDeletes;
+    use Searchable;
 
     protected $dates = ['published_at'];
     protected $fillable = ['title'];

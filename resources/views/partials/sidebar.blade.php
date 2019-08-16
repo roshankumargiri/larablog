@@ -2,14 +2,18 @@
     <aside class="right-sidebar">
 
         <div class="search-widget">
-            <div class="input-group">
-                <input type="text" class="form-control input-lg" placeholder="Search for...">
-                <span class="input-group-btn">
-                    <button class="btn btn-lg btn-default" type="button">
+            <form action="{{route('post.search')}}" method="GET">
+                <div class="input-group">
+                    <input name="q" type="text" class="form-control input-lg" placeholder="Search for..."
+                        value="{{old('q')}}">
+                    <span class="input-group-btn">
+                        <button type="submit" class="form-control input-lg"><i class="fa fa-search"></i></button>
+
                         <i class="fa fa-search"></i>
-                    </button>
-                </span>
-            </div>
+                        </input>
+                    </span>
+                </div>
+            </form>
         </div>
 
         <div class="widget">

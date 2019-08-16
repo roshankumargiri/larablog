@@ -11,6 +11,10 @@
             <div class="alert alert-info">
                 <p> Category: <b>{{' '.$categoryName}}</b></p>
             </div>
+            @elseif(isset($searchWord))
+            <div class="alert alert-info">
+                <p> Search results for: <b>{{' '.$searchWord}}</b></p>
+            </div>
             @elseif(isset($userName))
             <div class="alert alert-info">
                 <p> Posts By: <b>{{' '.$userName}}</b></p>

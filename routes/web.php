@@ -84,3 +84,5 @@ Route::put('/backend/user/updateimage/{id}', [
     'uses' => 'Backend\UserController@updateimage',
     'as' => 'backend.user.updateimage'
 ]);
+
+Route::get('posts/search', 'BlogController@search')->name('post.search');

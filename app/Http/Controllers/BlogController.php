@@ -108,4 +108,20 @@ class BlogController extends Controller
             ->paginate(3);
         return view('blog.index', compact('posts', 'userName'));
     }
+    public function search(Request $request)
+    {
+
+        if ($request->has('q')) {
+
+            $request->flashOnly('q');
+
+            $searchWord = $request->q;
+
+            $posts = Post::search($request->q)->paginate(3);
+        } else {
+            $posts = [];
+        }
+        return view('blog.index', compact('posts', 'searchWord'));
+        //return view('posts.search')->with('posts', $posts);
+    }
 }
